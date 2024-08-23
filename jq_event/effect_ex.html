@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="jquery-1.10.2.min.js"></script>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 10px;
+      }
+      .red {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btn">
+      <input type="button" value="append" class="append" />
+      <input type="button" value="remove" class="remove" />
+      <input type="button" value="show" class="show" />
+      <input type="button" value="hide" class="hide" />
+      <input type="button" value="toggle" class="toggle" />
+      <input type="button" value="fadein" class="fadein" />
+      <input type="button" value="fadeout" class="fadeout" />
+      <input type="button" value="fadetoggle" class="fadetoggle" />
+      <input type="button" value="addclass" class="addclass" />
+      <input type="button" value="removeclass" class="removeclass" />
+      <input type="button" value="toggleclass" class="toggleclass" />
+      <input type="button" value="slideup" class="slideup" />
+      <input type="button" value="slidedown" class="slidedown" />
+      <input type="button" value="slidetoggle" class="slidetoggle" />
+    </div>
+    <div class="content"></div>
+    <script>
+      $(".append").click(() => {
+        $(".content").append(`<div class="box"></div>`);
+        $(".box").last().css("background-color", makeColor);
+      });
+      // 색상 랜덤으로 만드는 함수
+      function makeColor() {
+        const randomColor = "#" + Math.round(Math.random() * 0xffffff).toString(16);
+        // console.log(randomColor);
+        return randomColor;
+      }
+      // 박스를 remove
+      $(".remove").click(function () {
+        $(".box").remove();
+      });
+      // show클릭하고 박스를 show
+      $(".show").click(() => {
+        $(".box").show();
+      });
+
+      // hide클릭하고 박스를 hide
+      $(".hide").click(() => {
+        $(".box").hide();
+      });
+      // toggle클릭하고 박스를 toggle
+      $(".toggle").click(() => {
+        $(".box").toggle();
+      });
+      // faidein(속도)
+      $(".fadein").click(() => {
+        $(".box").fadeIn(1000);
+      });
+      $(".fadeout").click(() => {
+        $(".box").fadeOut(1000);
+      });
+      $(".fadetoggle").click(() => {
+        $(".box").fadeToggle(1000);
+      });
+      $(".addclass").click(() => {
+        $(".box").addClass("red");
+      });
+      $(".removeclass").click(() => {
+        $(".box").removeClass("red");
+      });
+      $(".toggleclass").click(() => {
+        $(".box").toggleClass("red");
+      });
+      $(".slideup").click(() => {
+        // $(".box:odd").slideUp()
+        // $(".box:even").slideUp()
+        $(".box").slideUp();
+      });
+      $(".slidedown").click(() => {
+        // $(".box:odd").slideUp()
+        // $(".box:even").slideUp()
+        $(".box").slideDown();
+      });
+      $(".slidetoggle").click(() => {
+        $(".content div").each(function (index, item) {
+          // console.log(index );
+          // console.log(item );
+          $(item).text(index)
+        });
+      //  $(".box:odd").slideToggle()
+        $(".box:even").slideToggle()
+      });
+    </script>
+  </body>
+</html>
