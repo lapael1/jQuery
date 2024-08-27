@@ -5,32 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>이벤트</title>
     <script src="jquery-1.10.2.min.js"></script>
-    <style>
-    
-    </style>
+    <style></style>
   </head>
   <body>
-    <h1>focus / blur</h1>
-    <form action="#">
-      <p>
-        <label for="user_id_1">ID</label>
-        <input type="text" name="user_id_1" id="user_id_1" />
-      </p>
-      <p>
-        <label for="user_pw_1">PW</label>
-        <input type="password" name="user_pw_1" id="user_pw_1" />
-      </p>
-    </form>
+   
+    <p><button id="btn1">버튼1</button></p>
+    <p><button id="btn2">버튼2</button></p>
+    <p class="txt"></p>
     <script>
       $(function () {
-       $("#user_id_1 , #user_pw_1").on("focus",function(){
-        // console.log($(this));
-        $(this).css({"background-color" :"pink"})
-         
-       })
-       $("#user_id_1 , #user_pw_1").on("blur",function(){
-        $(this).css({"background-color" :"#fff"})
-       })
+        $("#btn1").data({"text" : "javascript"}).on({
+          "mouseover" : overFnc,
+          "mouseout" : outFnc
+        })
+        $("#btn2").data({"text" : "하경미"}).on({
+          "mouseover focus" : overFnc,
+          "mouseout blur" : outFnc
+        })
+        function overFnc(){
+          $(".txt").text($(this).data("text"))
+        }
+        function outFnc(){
+          $(".txt").text("")
+        }
+
       });
     </script>
   </body>

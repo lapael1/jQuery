@@ -5,47 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>이벤트</title>
     <script src="jquery-1.10.2.min.js"></script>
-    <style>
-    
-    </style>
+    <style></style>
   </head>
   <body>
-    <p><input type="text" name="user_id" id="user_id"></p>
+    <p><input type="text" name="user_id" id="user_id" /></p>
     <script>
-      $(function(){
-        $(document).on("keydown", keyEventFnc)
-        function keyEventFnc(e){
-          let direct = ""
+      $(function () {
+        $(document).on("keydown", keyEventFnc);
+        function keyEventFnc(e) {
+          let direct = "";
           // console.log(e);
-          switch(e.keyCode){
-            case 37 : 
-            direct = "LEFT" 
-            break; 
-            case 38 : 
-            direct = "TOP" 
-            break; 
-            case 39 : 
-            direct = "RIGHT" 
-            break; 
-            case 40 : 
-            direct = "BOTTOM" 
-            break; 
-            case 16 : 
-            direct = "SHIFT" 
-            break; 
-            case 32 : 
-            direct = "SPACE BAR" 
-            break; 
-            case 8 : 
-            direct = "BACKSPACE" 
-            break; 
+          switch (e.keyCode) {
+            case 37:
+              direct = "LEFT";
+              break;
+            case 38:
+              direct = "TOP";
+              break;
+            case 39:
+              direct = "RIGHT";
+              break;
+            case 40:
+              direct = "BOTTOM";
+              break;
           }
-          if(direct) $("#user_id").val(direct)
-          
+          if (direct) $("#user_id").val(direct);
         }
-      })
+      });
     </script>
-    
-   
   </body>
 </html>
