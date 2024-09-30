@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AJAX JSON 문제 예제</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+      .person-info {
+        display: none;
+      }
+     
+      .name {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        margin-right: 10px;
+        border-radius: 3px;
+      }
+      .name:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="btnGetJSON">인물 정보 가져오기</button>
+    <div id="result"></div>
+
+    <script>
+      $(document).ready(function () {
+        $("#btnGetJSON").click(function () {
+          $.ajax({
+            url: "testData.json",
+            method: "Get",
+            dataType: "json",
+            success: function (data) {
+              $("#result").empty(); // 이전 결과 지우기 (한번 출력)
+              // console.log(data);
+              // $.each(function(){})
+              data.forEach(function (person, index) {
+                // console.log(person);
+                // console.log(index);
+                let personInfo = "";
+                // console.log(personInfo);
+                for (let key in person) {
+                  if (person.hasOwnProperty(key)) {
+                    // <p class="name">name : Alice  </p>
+                    // <p class="image">image : images/alice.png
+                    // </p>  <p class="personality">personality : 호기심이 많고 모험심이 강함  </p>
+                    personInfo += ` <p class="${key}">${key} : ${person[key]}  </p> `;
+                  }
+                }
+                // console.log(personInfo);
+                let personDiv = `
+                 <div class="person">
+                  <button class="name">${person.name}</button>
+                   <div class="person-info">
+                     <p><strong>Person: ${index + 1}</strong></p>
+                     <p>Name: ${person.name}</p>
+                     <img src="${person.image}" alt="${person.name}" style="width: 100px; height: auto;">
+                     <p>Personality: ${person.personality}</p>
+                   </div>
+                 </div>
+                `;
+                $("#result").append(personDiv);
+              });
+              // 이름 클릭 이벤트 등록
+              $(".name").click(function(){
+                let $this = $(this)
+                let $info = $(this).next(".person-info")
+                // 현재 열려 있는 .person-info가 클릭된 .person-infor가 아닐 경우 닫기
+                $(".person-info").not($info).slideUp()
+                // 버튼을 빠르게 여러 번 눌러도 중간 애니메이션이 취소되고, 마지막 클릭 시점의 상태만 유지
+                $info.slideToggle()
+              })
+            },
+            error: function (xhr, textStatus, error) {
+              console.error("데이터를 불러오는데 문제가 발생했습니다.", error);
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

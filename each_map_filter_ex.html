@@ -12,6 +12,7 @@
       <li>Banana</li>
       <li>Cherry</li>
       <li>Blueberry</li>
+      
     </ul>
     <script>
       $(function () {
@@ -40,8 +41,14 @@
         });
         // console.log(filteredFruits);
         // 필터링된 요소만 스타일 적용
-        filteredFruits.css("color" , "blue")
-        console.log(filteredFruits.text());
+        filteredFruits.css("color" , "red")
+        // console.log(filteredFruits.text());
+        let bFruitName = filteredFruits.map(function(index, element){
+            return $(element).text()
+r
+        }).get()
+        // 쉼표로 구분하여 문자열로 출력
+        console.log(bFruitName.join(" , "));
         
       });
     </script>

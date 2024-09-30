@@ -40,8 +40,10 @@
       // console.log(taskText);
       if(taskText !== ""){
         const listItem = $("<li>").text(taskText)
+          // $("#taskList").append(listItem)
           $("#taskList").prepend(listItem)
           $("#taskInput").val("")
+          
       }
      })
     //  모두 삭제
